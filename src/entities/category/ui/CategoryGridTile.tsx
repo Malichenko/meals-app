@@ -1,7 +1,7 @@
 import { View, Text, StyleSheet, Pressable, Platform } from "react-native";
 import { type CategoryModel } from "../model";
 import { FC } from "react";
-import { theme } from "@shared/config/theme";
+import theme from "@shared/config/theme";
 
 type Props = {
   item: CategoryModel;
