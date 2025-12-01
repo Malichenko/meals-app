@@ -1,2 +1,2 @@
-export type { Category } from "./types";
-export { createCategory } from "./categoryModel";
+export type { CategoryModel } from "./types";
+export { Category } from "./categoryModel";

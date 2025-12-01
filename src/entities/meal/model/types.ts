@@ -2,7 +2,7 @@ export type Affordability = "affordable" | "pricey" | "luxurious";
 
 export type Complexity = "simple" | "challenging" | "hard";
 
-export type Meal = {
+export interface MealModel {
   id: string;
   categoryIds: string[];
   title: string;
@@ -16,4 +16,4 @@ export type Meal = {
   isVegan: boolean;
   isVegetarian: boolean;
   isLactoseFree: boolean;
-};
+}

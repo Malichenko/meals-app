@@ -1,3 +1,3 @@
 export type { Category } from "./model";
-export { createCategory } from "./model";
+export { Category } from "./model";
 export { CATEGORIES } from "./lib";
