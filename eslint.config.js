@@ -100,7 +100,7 @@ export default [
           ],
         },
       ],
-      // Re-export ban is configured below per-layer using file overrides
+
     },
   },
   {
@@ -122,6 +122,16 @@ export default [
               message:
                 "FSD: Widgets must not import other widgets via aliases. Use relative imports within the same widget only.",
             },
+            {
+              group: ["@app/*", "src/app/*"],
+              message:
+                "FSD: Widgets must not import from app layer. Widgets are lower than app in the FSD hierarchy.",
+            },
+            {
+              group: ["@screens/*", "src/screens/*"],
+              message:
+                "FSD: Widgets must not import from screens layer. Widgets are lower than screens in the FSD hierarchy.",
+            },
           ],
         },
       ],
@@ -138,6 +148,21 @@ export default [
               group: ["@features/*", "src/features/*"],
               message:
                 "FSD: Features must not import other features via aliases. Use relative imports within the same feature only.",
+            },
+            {
+              group: ["@app/*", "src/app/*"],
+              message:
+                "FSD: Features must not import from app layer. Features are lower than app in the FSD hierarchy.",
+            },
+            {
+              group: ["@screens/*", "src/screens/*"],
+              message:
+                "FSD: Features must not import from screens layer. Features are lower than screens in the FSD hierarchy.",
+            },
+            {
+              group: ["@widgets/*", "src/widgets/*"],
+              message:
+                "FSD: Features must not import from widgets layer. Features are lower than widgets in the FSD hierarchy.",
             },
           ],
         },
@@ -156,6 +181,11 @@ export default [
               message:
                 "FSD: Screens must not import other screens via aliases. Use relative imports within the same screen only.",
             },
+            {
+              group: ["@app/*", "src/app/*"],
+              message:
+                "FSD: Screens must not import from app layer. Screens are lower than app in the FSD hierarchy.",
+            },
           ],
         },
       ],
@@ -172,6 +202,26 @@ export default [
               group: ["@entities/*", "src/entities/*"],
               message:
                 "FSD: Entities must not import other entities via aliases. Use relative imports within the same entity only.",
+            },
+            {
+              group: ["@app/*", "src/app/*"],
+              message:
+                "FSD: Entities must not import from app layer. Entities are lower than app in the FSD hierarchy.",
+            },
+            {
+              group: ["@screens/*", "src/screens/*"],
+              message:
+                "FSD: Entities must not import from screens layer. Entities are lower than screens in the FSD hierarchy.",
+            },
+            {
+              group: ["@widgets/*", "src/widgets/*"],
+              message:
+                "FSD: Entities must not import from widgets layer. Entities are lower than widgets in the FSD hierarchy.",
+            },
+            {
+              group: ["@features/*", "src/features/*"],
+              message:
+                "FSD: Entities must not import from features layer. Entities are lower than features in the FSD hierarchy.",
             },
           ],
         },
