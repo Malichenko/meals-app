@@ -3,6 +3,15 @@
 # dependencies
 node_modules/
 
+# IDE
+.idea/
+.vscode/
+.cursor/
+.cursorrules
+.cursorignore
+.cursorignorerules
+.cursorignorerules
+
 # Expo
 .expo/
 dist/
