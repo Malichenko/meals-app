@@ -1,1 +1,1 @@
-export { BOOK } from "./book";
+export { BOOK, type RootStackParamList } from "./book";

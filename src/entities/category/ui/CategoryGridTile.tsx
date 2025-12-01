@@ -19,7 +19,7 @@ export const CategoryGridTile: FC<Props> = ({ item, onPress }) => {
           pressed ? styles.buttonPressed : null,
         ]}
         android_ripple={{ color: theme.palette.shadow.black }}
-        onPress={() => onPress?.(item)}
+        onPress={onPress?.bind(null, item)}
       >
         <View style={[styles.innerContainer, { backgroundColor: item.color }]}>
           <Text style={styles.title}>{item.title}</Text>
