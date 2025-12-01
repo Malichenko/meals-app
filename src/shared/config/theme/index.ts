@@ -8,5 +8,3 @@ export const theme = {
   fontSize,
   lineHeight,
 } as const;
-
-export default theme;

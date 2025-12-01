@@ -3,14 +3,23 @@ import { type CategoryModel } from "../model";
 import { FC } from "react";
 import { theme } from "@shared/config/theme";
 
-export const CategoryGridTile: FC<{ item: CategoryModel }> = ({ item }) => {
+type Props = {
+  item: CategoryModel;
+  onPress?: (item: CategoryModel) => void;
+};
+
+export const CategoryGridTile: FC<Props> = ({ item, onPress }) => {
   return (
     <View style={styles.gridItem}>
       <Pressable
+        accessibilityRole="button"
+        accessibilityLabel={`Open ${item.title} category`}
         style={({ pressed }) => [
           styles.button,
           pressed ? styles.buttonPressed : null,
         ]}
+        android_ripple={{ color: theme.palette.shadow.black }}
+        onPress={() => onPress?.(item)}
       >
         <View style={[styles.innerContainer, { backgroundColor: item.color }]}>
           <Text style={styles.title}>{item.title}</Text>
