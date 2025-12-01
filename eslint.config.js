@@ -5,109 +5,109 @@ import reactPlugin from "eslint-plugin-react"
 import reactHooksPlugin from "eslint-plugin-react-hooks"
 
 export default [
-    {
-        ignores: [
-            "node_modules/**",
-            "*.config.js",
-            "*.config.ts",
-            "metro.config.js",
-            "babel.config.js",
-            "jest.config.js",
-            "eslint.config.js",
-        ],
+  {
+    ignores: [
+      "node_modules/**",
+      "*.config.js",
+      "*.config.ts",
+      "metro.config.js",
+      "babel.config.js",
+      "jest.config.js",
+      "eslint.config.js",
+    ],
+  },
+  {
+    files: ["src/**/*.{ts,tsx}"],
+    languageOptions: {
+      parser: tsParser,
+      parserOptions: {
+        ecmaVersion: 2021,
+        sourceType: "module",
+        ecmaFeatures: {
+          jsx: true,
+        },
+        project: "./tsconfig.json",
+      },
     },
-    {
-        files: ["src/**/*.{ts,tsx}"],
-        languageOptions: {
-            parser: tsParser,
-            parserOptions: {
-                ecmaVersion: 2021,
-                sourceType: "module",
-                ecmaFeatures: {
-                    jsx: true,
-                },
-                project: "./tsconfig.json",
-            },
-        },
-        plugins: {
-            "@typescript-eslint": tsPlugin,
-            boundaries: boundariesPlugin,
-            react: reactPlugin,
-            "react-hooks": reactHooksPlugin,
-        },
-        settings: {
-            react: {
-                version: "detect",
-            },
-            // Map both TS path aliases and direct src/ paths to FSD layers
-            "boundaries/elements": [
-                {type: "app", pattern: "@app/*"},
-                {type: "screens", pattern: "@screens/*"},
-                {type: "widgets", pattern: "@widgets/*"},
-                {type: "features", pattern: "@features/*"},
-                {type: "entities", pattern: "@entities/*"},
-                {type: "shared", pattern: "@shared/*"},
-                // Also recognize relative/project-root based paths
-                {type: "app", pattern: "src/app/*"},
-                {type: "screens", pattern: "src/screens/*"},
-                {type: "widgets", pattern: "src/widgets/*"},
-                {type: "features", pattern: "src/features/*"},
-                {type: "entities", pattern: "src/entities/*"},
-                {type: "shared", pattern: "src/shared/*"},
-            ],
-            "boundaries/ignore": ["**/*.test.*", "**/*.spec.*"],
-        },
-        rules: {
-            ...tsPlugin.configs["recommended"].rules,
-            "react/react-in-jsx-scope": "off",
-            "@typescript-eslint/no-require-imports": "off",
-            "@typescript-eslint/no-unused-vars": [
-                "error",
-                {
-                    argsIgnorePattern: "^_",
-                    varsIgnorePattern: "^_",
-                },
-            ],
-            "boundaries/element-types": [
-                "error",
-                {
-                    default: "disallow",
-                    rules: [
-                        {
-                            from: 'app',
-                            allow: ['screens', 'widgets', 'features', 'entities', 'shared'],
-                        },
-                        {
-                            from: 'screens',
-                            allow: ['widgets', 'features', 'entities', 'shared'],
-                        },
-                        {
-                            from: 'widgets',
-                            allow: ['features', 'entities', 'shared'],
-                        },
-                        {
-                            from: 'features',
-                            allow: ['entities', 'shared'],
-                        },
-                        {
-                            from: 'entities',
-                            allow: ['shared'],
-                        },
-                        {
-                            from: 'shared',
-                            allow: ['shared'],
-                        },
-                    ],
-                },
-            ],
-            // Re-export ban is configured below per-layer using file overrides
-        },
+    plugins: {
+      "@typescript-eslint": tsPlugin,
+      boundaries: boundariesPlugin,
+      react: reactPlugin,
+      "react-hooks": reactHooksPlugin,
     },
-    {
-        files: ["src/**/*.test.{ts,tsx}", "src/**/*.spec.{ts,tsx}"],
-        rules: {
-            "boundaries/element-types": "off",
+    settings: {
+      react: {
+        version: "detect",
+      },
+      // Map both TS path aliases and direct src/ paths to FSD layers
+      "boundaries/elements": [
+        { type: "app", pattern: "@app/*" },
+        { type: "screens", pattern: "@screens/*" },
+        { type: "widgets", pattern: "@widgets/*" },
+        { type: "features", pattern: "@features/*" },
+        { type: "entities", pattern: "@entities/*" },
+        { type: "shared", pattern: "@shared/*" },
+        // Also recognize relative/project-root based paths
+        { type: "app", pattern: "src/app/*" },
+        { type: "screens", pattern: "src/screens/*" },
+        { type: "widgets", pattern: "src/widgets/*" },
+        { type: "features", pattern: "src/features/*" },
+        { type: "entities", pattern: "src/entities/*" },
+        { type: "shared", pattern: "src/shared/*" },
+      ],
+      "boundaries/ignore": ["**/*.test.*", "**/*.spec.*"],
+    },
+    rules: {
+      ...tsPlugin.configs["recommended"].rules,
+      "react/react-in-jsx-scope": "off",
+      "@typescript-eslint/no-require-imports": "off",
+      "@typescript-eslint/no-unused-vars": [
+        "error",
+        {
+          argsIgnorePattern: "^_",
+          varsIgnorePattern: "^_",
         },
+      ],
+      "boundaries/element-types": [
+        "error",
+        {
+          default: "disallow",
+          rules: [
+            {
+              from: 'app',
+              allow: ['screens', 'widgets', 'features', 'entities', 'shared'],
+            },
+            {
+              from: 'screens',
+              allow: ['widgets', 'features', 'entities', 'shared'],
+            },
+            {
+              from: 'widgets',
+              allow: ['features', 'entities', 'shared'],
+            },
+            {
+              from: 'features',
+              allow: ['entities', 'shared'],
+            },
+            {
+              from: 'entities',
+              allow: ['shared'],
+            },
+            {
+              from: 'shared',
+              allow: ['shared'],
+            },
+          ],
+        },
+      ],
+      // Re-export ban is configured below per-layer using file overrides
+    },
+  },
+  {
+    files: ["src/**/*.test.{ts,tsx}", "src/**/*.spec.{ts,tsx}"],
+    rules: {
+      "boundaries/element-types": "off",
+    },
   },
   // Forbid same-layer imports via path aliases (allow only relative intra-slice imports)
   {

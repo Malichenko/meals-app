@@ -1,1 +1,1 @@
-export { MEALS } from "./constants";
+export { MEALS } from "./fixtures";
