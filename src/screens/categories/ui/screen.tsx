@@ -3,13 +3,15 @@ import { CategoriesList } from "@widgets/categories-list";
 import { CATEGORIES } from "@entities/category/lib";
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
 import { CategoryModel } from "@entities/category";
-import { type RootStackParamList } from "@app/routes/lib/book";
+import type { RouteParams } from "@shared/routing/params";
+import { routes } from "@shared/routing/builders";
 
 export const CategoriesScreen = ({
   navigation,
-}: NativeStackScreenProps<RootStackParamList, "Categories">) => {
+}: NativeStackScreenProps<RouteParams, "Categories">) => {
   const handlePress = (item: CategoryModel) => {
-    navigation.navigate("MealOverview", { categoryId: item.id });
+    const descriptor = routes.MealOverview({ categoryId: item.id });
+    navigation.navigate(descriptor.name, descriptor.params);
   };
 
   return (

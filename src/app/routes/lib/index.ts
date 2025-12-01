@@ -1,1 +1,1 @@
-export { BOOK, type RootStackParamList } from "./book";
+export { screenRegistry } from "./registry";
