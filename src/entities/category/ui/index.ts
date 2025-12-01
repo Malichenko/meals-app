@@ -1,0 +1,1 @@
+export { CategoryGridTile } from "./CategoryGridTile";

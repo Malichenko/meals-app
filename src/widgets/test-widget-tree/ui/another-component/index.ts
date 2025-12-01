@@ -1,1 +1,0 @@
-export {AnotherComponent} from './another-component';

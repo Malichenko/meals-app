@@ -1,14 +1,14 @@
 import { StyleSheet } from "react-native";
 import { SafeAreaProvider, SafeAreaView } from "react-native-safe-area-context";
 import { StatusBar } from "expo-status-bar";
-import { Text } from "react-native";
+import { CategoriesScreen } from "@screens/categories";
 
 export const App = () => {
   return (
     <SafeAreaProvider>
       <SafeAreaView style={styles.container}>
         <StatusBar style="auto" />
-        <Text>Hello World</Text>
+        <CategoriesScreen />
       </SafeAreaView>
     </SafeAreaProvider>
   );
