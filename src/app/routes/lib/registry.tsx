@@ -9,6 +9,7 @@ import type { RouteParams, RouteKey } from "@shared/routing";
 import { CategoriesScreen } from "@screens/categories";
 import { MealOverview } from "@screens/meal-overview";
 import { MealDetailScreen } from "@screens/meal-detail";
+import { LikeButton } from "@features/like-button";
 
 export type ScreenComponent<K extends RouteKey> = ComponentType<
   NativeStackScreenProps<RouteParams, K>
@@ -44,6 +45,13 @@ export const screenRegistry: { [K in RouteKey]: ScreenConfig<K> } = {
     component: MealDetailScreen,
     options: ({ route }) => ({
       title: route.params.title,
+      headerRight: () => (
+        <LikeButton
+          onPress={(isLiked) => {
+            console.log("Like pressed:", isLiked, route.params);
+          }}
+        />
+      ),
     }),
   },
 };
