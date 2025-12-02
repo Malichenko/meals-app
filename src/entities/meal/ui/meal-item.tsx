@@ -13,12 +13,16 @@ import FontAwesome6 from "@expo/vector-icons/FontAwesome6";
 
 interface Props {
   meal: MealModel;
+  onPress?: (item: MealModel) => void;
 }
 
-export const MealItem: React.FC<Props> = ({ meal }) => {
+export const MealItem: React.FC<Props> = ({ meal, onPress }) => {
   return (
     <View style={styles.container}>
-      <Pressable style={({ pressed }) => pressed && styles.pressed}>
+      <Pressable
+        style={({ pressed }) => pressed && styles.pressed}
+        onPress={onPress?.bind(null, meal)}
+      >
         <View style={styles.innerContainer}>
           <Image
             source={{

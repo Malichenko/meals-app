@@ -1,1 +1,0 @@
-export { MealDetailsScreen } from "./screen";
