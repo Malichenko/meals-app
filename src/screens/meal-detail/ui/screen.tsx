@@ -1,8 +1,8 @@
 import { ScreenLayout } from "@shared/ui/screen-layout";
-import { Text } from "react-native";
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
 import type { RouteParams } from "@shared/routing";
 import { getMealById } from "@entities/meal";
+import { Meal } from "@widgets/meal-detail";
 
 export const MealDetailScreen = ({
   route,
@@ -12,7 +12,7 @@ export const MealDetailScreen = ({
 
   return (
     <ScreenLayout>
-      <Text>{meal?.title}</Text>
+      <Meal meal={meal} />
     </ScreenLayout>
   );
 };

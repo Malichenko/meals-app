@@ -8,8 +8,7 @@ import {
   Platform,
 } from "react-native";
 import theme from "@shared/config/theme";
-
-import FontAwesome6 from "@expo/vector-icons/FontAwesome6";
+import { MealDetails } from "./meal-details";
 
 interface Props {
   meal: MealModel;
@@ -34,38 +33,11 @@ export const MealItem: React.FC<Props> = ({ meal, onPress }) => {
           <View style={styles.caption}>
             <Text style={styles.title}>{meal.title}</Text>
 
-            <View style={styles.details}>
-              <View style={styles.detailItem}>
-                <FontAwesome6
-                  name="clock"
-                  size={18}
-                  color={theme.palette.neutral[60]}
-                />
-                <Text style={styles.detailText}>{meal.duration}m</Text>
-              </View>
-
-              <View style={styles.detailItem}>
-                <FontAwesome6
-                  name="bars-progress"
-                  size={18}
-                  color={theme.palette.neutral[60]}
-                />
-                <Text style={styles.detailText}>
-                  {meal.complexity.toUpperCase()}
-                </Text>
-              </View>
-
-              <View style={styles.detailItem}>
-                <FontAwesome6
-                  name="dollar-sign"
-                  size={18}
-                  color={theme.palette.neutral[60]}
-                />
-                <Text style={styles.detailText}>
-                  {meal.affordability.toUpperCase()}
-                </Text>
-              </View>
-            </View>
+            <MealDetails
+              duration={meal.duration}
+              complexity={meal.complexity}
+              affordability={meal.affordability}
+            />
           </View>
         </View>
       </Pressable>
@@ -103,22 +75,7 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
     textAlign: "center",
   },
-  details: {
-    flexDirection: "row",
-    justifyContent: "space-around",
-    alignItems: "center",
-    gap: theme.spacing.x1,
-  },
-  detailText: {
-    fontSize: theme.fontSize.sm,
-    color: theme.palette.neutral[60],
-  },
-  detailItem: {
-    flexDirection: "row",
-    justifyContent: "center",
-    alignItems: "center",
-    gap: theme.spacing.x1,
-  },
+
   pressed: {
     opacity: 0.75,
   },
