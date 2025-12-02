@@ -1,1 +1,1 @@
-export { MealOverview } from "./meal-overview";
+export { MealOverview } from "./screen";

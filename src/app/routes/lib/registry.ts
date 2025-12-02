@@ -8,6 +8,7 @@ import type { RouteProp } from "@react-navigation/native";
 import type { RouteParams, RouteKey } from "@shared/routing";
 import { CategoriesScreen } from "@screens/categories";
 import { MealOverview } from "@screens/meal-overview";
+import { MealDetailsScreen } from "@screens/meal-details";
 
 export type ScreenComponent<K extends RouteKey> = ComponentType<
   NativeStackScreenProps<RouteParams, K>
@@ -38,5 +39,11 @@ export const screenRegistry: { [K in RouteKey]: ScreenConfig<K> } = {
       title: route.params.title,
     }),
     component: MealOverview,
+  },
+  MealDetails: {
+    component: MealDetailsScreen,
+    options: ({ route }) => ({
+      title: route.params.title,
+    }),
   },
 };
