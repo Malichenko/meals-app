@@ -1,1 +1,0 @@
-export { MEALS } from "./fixtures";

@@ -1,6 +1,11 @@
 import type { ComponentType } from "react";
-import type { NativeStackNavigationOptions, NativeStackScreenProps } from "@react-navigation/native-stack";
-import type { RouteParams, RouteKey } from "@shared/routing/params";
+import type {
+  NativeStackNavigationOptions,
+  NativeStackScreenProps,
+  NativeStackNavigationProp,
+} from "@react-navigation/native-stack";
+import type { RouteProp } from "@react-navigation/native";
+import type { RouteParams, RouteKey } from "@shared/routing";
 import { CategoriesScreen } from "@screens/categories";
 import { MealOverview } from "@screens/meal-overview";
 
@@ -8,19 +13,30 @@ export type ScreenComponent<K extends RouteKey> = ComponentType<
   NativeStackScreenProps<RouteParams, K>
 >;
 
+type ScreenOptions<K extends RouteKey> =
+  | NativeStackNavigationOptions
+  | ((props: {
+      route: RouteProp<RouteParams, K>;
+      navigation: NativeStackNavigationProp<RouteParams, K>;
+      theme: ReactNavigation.Theme;
+    }) => NativeStackNavigationOptions);
+
 type ScreenConfig<K extends RouteKey> = {
-  title?: string;
   component: ScreenComponent<K>;
-  options?: NativeStackNavigationOptions;
+  options?: ScreenOptions<K>;
 };
 
 export const screenRegistry: { [K in RouteKey]: ScreenConfig<K> } = {
   Categories: {
-    title: "All Categories",
     component: CategoriesScreen,
+    options: {
+      title: "All Categories",
+    },
   },
   MealOverview: {
-    title: "Meal Overview",
+    options: ({ route }) => ({
+      title: route.params.title,
+    }),
     component: MealOverview,
   },
 };

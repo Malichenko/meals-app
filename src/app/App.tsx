@@ -4,7 +4,7 @@ import { Navigation } from "./routes";
 export const App = () => {
   return (
     <>
-      <StatusBar style="dark" />
+      <StatusBar style="light" />
       <Navigation />
     </>
   );

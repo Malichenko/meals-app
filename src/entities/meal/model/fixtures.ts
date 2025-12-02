@@ -1,5 +1,5 @@
-import { Meal } from "../model";
-import type { MealModel } from "../model";
+import { Meal } from "./mealModel";
+import type { MealModel } from "./types";
 
 export const MEALS: MealModel[] = [
   new Meal({
@@ -9,7 +9,7 @@ export const MEALS: MealModel[] = [
     affordability: "affordable",
     complexity: "simple",
     imageUrl:
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/2/20/Spaghetti_Bolognese_mit_Parmesan_oder_Grana_Padano.jpg/800px-Spaghetti_Bolognese_mit_Parmesan_oder_Grana_Padano.jpg",
+      "https://img.chefkoch-cdn.de/rezepte/393031127655461/bilder/1585337/crop-960x540/spaghetti-bolognese.jpg",
     duration: 20,
     ingredients: [
       "4 Tomatoes",

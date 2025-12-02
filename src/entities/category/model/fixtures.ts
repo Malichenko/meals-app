@@ -1,5 +1,5 @@
-import { Category } from "../model";
-import type { Category as CategoryType } from "../model";
+import { Category } from "./categoryModel";
+import type { CategoryModel as CategoryType } from "./types";
 
 export const CATEGORIES: CategoryType[] = [
   new Category({ id: "c1", color: "#f5428d", title: "Italian" }),
