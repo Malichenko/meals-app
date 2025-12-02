@@ -1,5 +1,5 @@
 import { MealModel } from "@entities/meal";
-import { View, StyleSheet, Image } from "react-native";
+import { View, StyleSheet, Image, ScrollView } from "react-native";
 import { FC } from "react";
 import theme from "@shared/config/theme";
 import {
@@ -17,7 +17,7 @@ interface Props {
 
 export const Meal: FC<Props> = ({ meal }) => {
   return (
-    <View style={styles.container}>
+    <ScrollView style={styles.container} showsVerticalScrollIndicator={false}>
       <Image source={{ uri: meal.imageUrl }} style={styles.image} />
 
       <View style={styles.caption}>
@@ -56,13 +56,14 @@ export const Meal: FC<Props> = ({ meal }) => {
           </RecipeSection>
         </View>
       </View>
-    </View>
+    </ScrollView>
   );
 };
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    marginBottom: theme.spacing.x4,
   },
   image: {
     width: "100%",
