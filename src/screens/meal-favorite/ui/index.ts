@@ -1,0 +1,1 @@
+export { MealFavoriteScreen } from "./screen";

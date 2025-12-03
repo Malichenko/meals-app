@@ -6,9 +6,9 @@ export type RouteDescriptor<K extends RouteKey = RouteKey> = {
 };
 
 export const routes = {
-  Categories: (): RouteDescriptor<"Categories"> => ({
-    name: "Categories",
-    params: undefined,
+  Drawer: (params: RouteParams["Drawer"]): RouteDescriptor<"Drawer"> => ({
+    name: "Drawer",
+    params,
   }),
   MealOverview: (
     params: RouteParams["MealOverview"]
