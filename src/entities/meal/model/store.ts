@@ -1,41 +1,54 @@
+import { useShallow } from "zustand/react/shallow";
 import { create } from "zustand";
 import { immer } from "zustand/middleware/immer";
-import { MEALS } from "./fixtures";
-import type { MealModel } from "./types";
 
-export interface MealStore {
+import { MEALS } from "./fixtures";
+import { MealModel } from "./types";
+
+interface MealStore {
   meals: MealModel[];
-  favorites: Set<string>;
-  toggleFavorite: (mealId: string) => void;
-  getMealById: (mealId: string) => MealModel | undefined;
-  getMealsByCategoryId: (categoryId: string) => MealModel[];
-  getFavorites: () => MealModel[];
+  favoriteMeals: MealModel[];
+  toggleFavorites: (ids: string) => void;
+  isFavorite: (mealId: string) => boolean;
 }
 
-export const useMealStore = create<MealStore>()(
+const useStore = create<MealStore>()(
   immer((set, get) => ({
     meals: MEALS,
-    favorites: new Set<string>(),
-    toggleFavorite: (mealId) => {
+    favoriteMeals: [],
+    toggleFavorites: (mealId: string) => {
       set((state) => {
-        if (state.favorites.has(mealId)) {
-          state.favorites.delete(mealId);
+        const idx = state.favoriteMeals.findIndex((meal) => meal.id === mealId);
+        if (idx !== -1) {
+          state.favoriteMeals.splice(idx, 1);
         } else {
-          state.favorites.add(mealId);
+          state.favoriteMeals.push(
+            state.meals.find((meal) => meal.id === mealId)!
+          );
         }
       });
     },
-    getMealById: (mealId) => {
-      return get().meals.find((meal) => meal.id === mealId);
-    },
-    getMealsByCategoryId: (categoryId) => {
-      return get().meals.filter((meal) =>
-        meal.categoryIds.includes(categoryId)
-      );
-    },
-    getFavorites: () => {
-      const state = get();
-      return state.meals.filter((meal) => state.favorites.has(meal.id));
-    },
+    isFavorite: (mealId: string) =>
+      get().favoriteMeals.some((meal) => meal.id === mealId),
   }))
 );
+
+export const useMealSelectors = {
+  byCategory: (categoryId: string) =>
+    useStore(
+      useShallow((state) =>
+        state.meals.filter((meal) => meal.categoryIds.includes(categoryId))
+      )
+    ),
+  byId: (mealId: string) =>
+    useStore(
+      useShallow((state) => state.meals.find((meal) => meal.id === mealId))
+    ),
+
+  favorites: () => useStore((state) => state.favoriteMeals),
+
+  toggleFavorite: () => useStore((state) => state.toggleFavorites),
+
+  isFavorite: (mealId: string) =>
+    useStore(useShallow((state) => state.isFavorite(mealId))),
+};

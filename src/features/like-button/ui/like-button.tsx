@@ -1,19 +1,18 @@
-import { FC, useState } from "react";
+import { FC } from "react";
 import { IconButton } from "@shared/ui/icon-button";
 import theme from "@shared/config/theme";
+import { useMealSelectors } from "@entities/meal";
 
 interface Props {
-  onPress?: (isLiked: boolean) => void;
-  initialLiked?: boolean;
+  mealId: string;
 }
 
-export const LikeButton: FC<Props> = ({ onPress, initialLiked = false }) => {
-  const [isLiked, setIsLiked] = useState(initialLiked);
+export const LikeButton: FC<Props> = ({ mealId }) => {
+  const isLiked = useMealSelectors.isFavorite(mealId);
+  const toggleFavorite = useMealSelectors.toggleFavorite();
 
   const handlePress = () => {
-    const newLikedState = !isLiked;
-    setIsLiked(newLikedState);
-    onPress?.(newLikedState);
+    toggleFavorite(mealId);
   };
 
   const iconName = isLiked ? "heart" : "heart-outline";

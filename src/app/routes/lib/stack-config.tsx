@@ -33,13 +33,7 @@ export const stackScreenConfig: StackScreenConfig = {
       component: MealDetailScreen,
       options: ({ route }) => ({
         title: route.params.title,
-        headerRight: () => (
-          <LikeButton
-            onPress={(isLiked) => {
-              console.log("Like pressed:", isLiked, route.params);
-            }}
-          />
-        ),
+        headerRight: () => <LikeButton mealId={route.params.mealId} />,
       }),
     },
   },

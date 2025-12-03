@@ -1,10 +1,17 @@
 import { ScreenLayout } from "@shared/ui/screen-layout";
-import { Text } from "react-native";
+import { MealFavoriteList } from "@widgets/meal-favorite-list";
+import { useMealSelectors, type MealModel } from "@entities/meal";
 
 export const MealFavoriteScreen = () => {
+  const favoriteMeals = useMealSelectors.favorites();
+
+  const handlePress = (_item: MealModel) => {
+    // TODO: navigate to meal detail
+  };
+
   return (
     <ScreenLayout>
-      <Text>Meal Favorite</Text>
+      <MealFavoriteList meals={favoriteMeals} onItemPress={handlePress} />
     </ScreenLayout>
   );
 };

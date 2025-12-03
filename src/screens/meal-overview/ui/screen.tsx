@@ -1,7 +1,7 @@
 import { ScreenLayout } from "@shared/ui/screen-layout";
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
 import type { RouteParams } from "@shared/routing";
-import { useMealStore, type MealModel } from "@entities/meal";
+import { useMealSelectors, type MealModel } from "@entities/meal";
 import { MealsList } from "@widgets/meals-list";
 import { routes } from "@shared/routing";
 
@@ -10,7 +10,7 @@ export const MealOverview = ({
   route,
 }: NativeStackScreenProps<RouteParams, "MealOverview">) => {
   const { categoryId } = route.params;
-  const meals = useMealStore((state) => state.getMealsByCategoryId(categoryId));
+  const meals = useMealSelectors.byCategory(categoryId);
 
   const handlePress = (item: MealModel) => {
     const descriptor = routes.MealDetails({
