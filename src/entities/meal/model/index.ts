@@ -1,4 +1,5 @@
 export type { Affordability, Complexity, MealModel } from "./types";
+export type { MealStore } from "./store";
 export { Meal } from "./mealModel";
 export { MEALS } from "./fixtures";
-export { getMealsByCategoryId, getMealById } from "./getMeals";
+export { useMealStore } from "./store";
