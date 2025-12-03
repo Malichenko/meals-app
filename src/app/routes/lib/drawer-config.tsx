@@ -32,7 +32,7 @@ export const drawerNavigatorConfig: DrawerNavigatorConfig = {
       options: {
         title: "Favorites",
         drawerIcon: ({ color, size }) => (
-          <Ionicons name="star" color={color} size={size} />
+          <Ionicons name="heart" color={color} size={size} />
         ),
       },
     },

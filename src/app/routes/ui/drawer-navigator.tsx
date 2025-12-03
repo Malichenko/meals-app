@@ -1,7 +1,7 @@
 import { createDrawerNavigator } from "@react-navigation/drawer";
 import type { DrawerParams } from "@shared/routing";
 import { objectEntries } from "@shared/utils/object";
-import { drawerNavigatorConfig } from "../lib";
+import { drawerNavigatorConfig } from "../lib/drawer-config";
 
 const Drawer = createDrawerNavigator<DrawerParams>();
 
