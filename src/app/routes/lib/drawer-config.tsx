@@ -15,7 +15,7 @@ export const drawerNavigatorConfig: DrawerNavigatorConfig = {
     },
     drawerInactiveTintColor: theme.palette.neutral[10],
     drawerActiveTintColor: theme.palette.primary[60],
-    drawerActiveBackgroundColor: theme.palette.primary[30],
+    drawerActiveBackgroundColor: theme.palette.primary[20],
   },
   screens: {
     Categories: {
