@@ -1,11 +1,12 @@
 import { ScreenLayout } from "@shared/ui/screen-layout";
-import { MealFavoriteList } from "@widgets/meal-favorite-list";
 import { useMealSelectors, type MealModel } from "@entities/meal";
 import type { DrawerParams, RouteParams } from "@shared/routing";
 import { routes } from "@shared/routing";
 import { DrawerScreenProps } from "@react-navigation/drawer";
 import { CompositeScreenProps } from "@react-navigation/native";
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
+import { getComponent } from "../lib";
+import { useMemo } from "react";
 
 type Props = CompositeScreenProps<
   DrawerScreenProps<DrawerParams, "FavoriteMeals">,
@@ -23,9 +24,11 @@ export const MealFavoriteScreen = ({ navigation }: Props) => {
     navigation.navigate(descriptor.name, descriptor.params);
   };
 
+  const Component = useMemo(() => getComponent(favoriteMeals), [favoriteMeals]);
+
   return (
     <ScreenLayout>
-      <MealFavoriteList meals={favoriteMeals} onItemPress={handlePress} />
+      <Component meals={favoriteMeals} onItemPress={handlePress} />
     </ScreenLayout>
   );
 };
