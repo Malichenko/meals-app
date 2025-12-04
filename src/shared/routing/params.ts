@@ -2,7 +2,7 @@ import { NavigatorScreenParams } from "@react-navigation/native";
 
 export type DrawerParams = {
   Categories: undefined;
-  FavoriteMeals: undefined;
+  FavoriteMeals: { mealId: string; title: string };
 };
 
 export type RouteParams = {
@@ -11,4 +11,4 @@ export type RouteParams = {
   MealDetail: { mealId: string; title: string };
 };
 
-export type RouteKey = keyof RouteParams;
+export type RouteKey = keyof RouteParams | keyof DrawerParams;
