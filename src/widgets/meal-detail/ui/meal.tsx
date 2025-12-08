@@ -35,9 +35,7 @@ export const Meal: FC<Props> = ({ meal }) => {
             <List
               style={styles.recipeList}
               items={meal.ingredients}
-              renderItem={({ item }) => (
-                <RecipeListItem text={`\u2013 ${item}`} />
-              )}
+              renderItem={({ item }) => <RecipeListItem text={`\u2013 ${item}`} />}
               keyExtractor={getKey}
             />
           </RecipeSection>

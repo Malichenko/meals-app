@@ -1,12 +1,5 @@
 import { MealModel } from "../model";
-import {
-  View,
-  Text,
-  StyleSheet,
-  Pressable,
-  Image,
-  Platform,
-} from "react-native";
+import { View, Text, StyleSheet, Pressable, Image, Platform } from "react-native";
 import theme from "@shared/config/theme";
 import { MealDetails } from "./meal-details";
 

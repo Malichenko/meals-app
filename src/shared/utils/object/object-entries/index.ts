@@ -1,1 +1,1 @@
-export { objectEntries } from './object-entries';
+export { objectEntries } from "./object-entries";

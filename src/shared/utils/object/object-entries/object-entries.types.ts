@@ -9,5 +9,5 @@
  * @template T - The type of the object whose entries are being retrieved.
  */
 export type Entries<T> = {
-    [K in keyof T]-?: [K, T[K]] // Add -? to remove optionality
-}[keyof T][]
+  [K in keyof T]-?: [K, T[K]]; // Add -? to remove optionality
+}[keyof T][];

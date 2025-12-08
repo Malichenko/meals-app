@@ -14,10 +14,7 @@ export const CategoryGridTile: FC<Props> = ({ item, onPress }) => {
       <Pressable
         accessibilityRole="button"
         accessibilityLabel={`Open ${item.title} category`}
-        style={({ pressed }) => [
-          styles.button,
-          pressed ? styles.buttonPressed : null,
-        ]}
+        style={({ pressed }) => [styles.button, pressed ? styles.buttonPressed : null]}
         android_ripple={{ color: theme.palette.shadow.black }}
         onPress={onPress?.bind(null, item)}
       >

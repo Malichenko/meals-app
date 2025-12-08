@@ -22,28 +22,24 @@ const useStore = create<MealStore>()(
         if (idx !== -1) {
           state.favoriteMeals.splice(idx, 1);
         } else {
-          state.favoriteMeals.push(
-            state.meals.find((meal) => meal.id === mealId)!
-          );
+          state.favoriteMeals.push(state.meals.find((meal) => meal.id === mealId)!);
         }
       });
     },
     isFavorite: (mealId: string) =>
       get().favoriteMeals.some((meal) => meal.id === mealId),
-  }))
+  })),
 );
 
 export const useMealSelectors = {
   byCategory: (categoryId: string) =>
     useStore(
       useShallow((state) =>
-        state.meals.filter((meal) => meal.categoryIds.includes(categoryId))
-      )
+        state.meals.filter((meal) => meal.categoryIds.includes(categoryId)),
+      ),
     ),
   byId: (mealId: string) =>
-    useStore(
-      useShallow((state) => state.meals.find((meal) => meal.id === mealId))
-    ),
+    useStore(useShallow((state) => state.meals.find((meal) => meal.id === mealId))),
 
   favorites: () => useStore((state) => state.favoriteMeals),
 

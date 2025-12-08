@@ -11,12 +11,7 @@ interface Props {
   affordability: MealModel["affordability"];
 }
 
-export const MealInfo: FC<Props> = ({
-  title,
-  duration,
-  complexity,
-  affordability,
-}) => {
+export const MealInfo: FC<Props> = ({ title, duration, complexity, affordability }) => {
   return (
     <View style={styles.info}>
       <Text style={styles.title}>{title}</Text>

@@ -9,18 +9,11 @@ interface Props<T> {
   keyExtractor: (item: T, index: number) => string;
 }
 
-export const List = <T,>({
-  items,
-  style,
-  renderItem,
-  keyExtractor,
-}: Props<T>) => {
+export const List = <T,>({ items, style, renderItem, keyExtractor }: Props<T>) => {
   return (
     <View style={style}>
       {items.map((item, index) => (
-        <View key={keyExtractor(item, index)}>
-          {renderItem({ item, index })}
-        </View>
+        <View key={keyExtractor(item, index)}>{renderItem({ item, index })}</View>
       ))}
     </View>
   );

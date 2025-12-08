@@ -2,11 +2,7 @@ import theme from "@shared/config/theme";
 import { type FC, type PropsWithChildren } from "react";
 import { View, StyleSheet, type ViewProps } from "react-native";
 
-export const Card: FC<PropsWithChildren<ViewProps>> = ({
-  children,
-  style,
-  ...rest
-}) => {
+export const Card: FC<PropsWithChildren<ViewProps>> = ({ children, style, ...rest }) => {
   return (
     <View {...rest} style={[styles.card, style]}>
       {children}

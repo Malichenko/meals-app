@@ -3,8 +3,8 @@ import type { RouteKey, RouteParams, DrawerParams } from "./params";
 type Params<K extends RouteKey> = K extends keyof RouteParams
   ? RouteParams[K]
   : K extends keyof DrawerParams
-  ? DrawerParams[K]
-  : never;
+    ? DrawerParams[K]
+    : never;
 
 export type RouteDescriptor<K extends RouteKey> = {
   name: K;
@@ -17,13 +17,14 @@ export const routes = {
     params,
   }),
   MealOverview: (
-    params: RouteParams["MealOverview"]
+    params: RouteParams["MealOverview"],
   ): RouteDescriptor<"MealOverview"> => ({ name: "MealOverview", params }),
-  MealDetails: (
-    params: RouteParams["MealDetail"]
-  ): RouteDescriptor<"MealDetail"> => ({ name: "MealDetail", params }),
+  MealDetails: (params: RouteParams["MealDetail"]): RouteDescriptor<"MealDetail"> => ({
+    name: "MealDetail",
+    params,
+  }),
   FavoriteMeals: (
-    params: DrawerParams["FavoriteMeals"]
+    params: DrawerParams["FavoriteMeals"],
   ): RouteDescriptor<"FavoriteMeals"> => ({
     name: "FavoriteMeals",
     params,

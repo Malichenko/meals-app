@@ -1,4 +1,4 @@
-import type { Entries } from './object-entries.types'
+import type { Entries } from "./object-entries.types";
 
 /**
  * Utility function that returns the entries of an object with proper type inference.
@@ -23,5 +23,5 @@ import type { Entries } from './object-entries.types'
  * complex prototype chains or non-enumerable properties.
  */
 export function objectEntries<T extends { [key: string]: unknown }>(obj: T): Entries<T> {
-    return Object.entries(obj) as Entries<T>
+  return Object.entries(obj) as Entries<T>;
 }

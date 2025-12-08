@@ -13,8 +13,8 @@ export const MealFavoriteEmptyState = () => {
       <Card>
         <Text style={styles.title}>Favorites stay fresh here</Text>
         <Text style={styles.description}>
-          Save dishes you love by tapping the heart icon on any meal. They will
-          appear on this screen for quick access.
+          Save dishes you love by tapping the heart icon on any meal. They will appear on
+          this screen for quick access.
         </Text>
       </Card>
     </View>

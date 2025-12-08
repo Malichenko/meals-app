@@ -1,8 +1,10 @@
-import tsParser from "@typescript-eslint/parser"
-import tsPlugin from "@typescript-eslint/eslint-plugin"
-import boundariesPlugin from "eslint-plugin-boundaries"
-import reactPlugin from "eslint-plugin-react"
-import reactHooksPlugin from "eslint-plugin-react-hooks"
+import tsParser from "@typescript-eslint/parser";
+import tsPlugin from "@typescript-eslint/eslint-plugin";
+import boundariesPlugin from "eslint-plugin-boundaries";
+import reactPlugin from "eslint-plugin-react";
+import reactHooksPlugin from "eslint-plugin-react-hooks";
+import importPlugin from "eslint-plugin-import";
+import prettierPlugin from "eslint-plugin-prettier";
 
 export default [
   {
@@ -34,12 +36,13 @@ export default [
       boundaries: boundariesPlugin,
       react: reactPlugin,
       "react-hooks": reactHooksPlugin,
+      import: importPlugin,
+      prettier: prettierPlugin,
     },
     settings: {
       react: {
         version: "detect",
       },
-      // Map both TS path aliases and direct src/ paths to FSD layers
       "boundaries/elements": [
         { type: "app", pattern: "@app/*" },
         { type: "screens", pattern: "@screens/*" },
@@ -56,6 +59,14 @@ export default [
         { type: "shared", pattern: "src/shared/*" },
       ],
       "boundaries/ignore": ["**/*.test.*", "**/*.spec.*"],
+      "import/resolver": {
+        typescript: {
+          project: "./tsconfig.json",
+        },
+        node: {
+          extensions: [".ts", ".tsx", ".js", ".jsx"],
+        },
+      },
     },
     rules: {
       ...tsPlugin.configs["recommended"].rules,
@@ -74,33 +85,68 @@ export default [
           default: "disallow",
           rules: [
             {
-              from: 'app',
-              allow: ['screens', 'widgets', 'features', 'entities', 'shared'],
+              from: "app",
+              allow: ["screens", "widgets", "features", "entities", "shared"],
             },
             {
-              from: 'screens',
-              allow: ['widgets', 'features', 'entities', 'shared'],
+              from: "screens",
+              allow: ["widgets", "features", "entities", "shared"],
             },
             {
-              from: 'widgets',
-              allow: ['features', 'entities', 'shared'],
+              from: "widgets",
+              allow: ["features", "entities", "shared"],
             },
             {
-              from: 'features',
-              allow: ['entities', 'shared'],
+              from: "features",
+              allow: ["entities", "shared"],
             },
             {
-              from: 'entities',
-              allow: ['shared'],
+              from: "entities",
+              allow: ["shared"],
             },
             {
-              from: 'shared',
-              allow: ['shared'],
+              from: "shared",
+              allow: ["shared"],
             },
           ],
         },
       ],
-
+      "no-restricted-imports": [
+        "error",
+        {
+          patterns: [
+            {
+              group: [
+                "@screens/*/*",
+                "@widgets/*/*",
+                "@features/*/*",
+                "@entities/*/*",
+                "src/screens/*/*",
+                "src/widgets/*/*",
+                "src/features/*/*",
+                "src/entities/*/*",
+              ],
+              message:
+                "Import from the layer public API (its index.ts) instead of deep paths.",
+            },
+            {
+              group: [
+                "../entities/*",
+                "../../entities/*",
+                "../features/*",
+                "../../features/*",
+                "../widgets/*",
+                "../../widgets/*",
+                "../screens/*",
+                "../../screens/*",
+              ],
+              message:
+                "Use path aliases to access other layers through their public API.",
+            },
+          ],
+        },
+      ],
+      "prettier/prettier": "error",
     },
   },
   {
@@ -262,10 +308,26 @@ export default [
     rules: {
       "no-restricted-syntax": [
         "error",
-        { selector: "ExportNamedDeclaration[source.value='@features']", message: "Re-exporting from the same layer is forbidden by FSD: do not re-export features from features." },
-        { selector: "ExportNamedDeclaration[source.value^='@features/']", message: "Re-exporting from the same layer is forbidden by FSD: do not re-export features from features." },
-        { selector: "ExportAllDeclaration[source.value='@features']", message: "Re-exporting from the same layer is forbidden by FSD: do not re-export features from features." },
-        { selector: "ExportAllDeclaration[source.value^='@features/']", message: "Re-exporting from the same layer is forbidden by FSD: do not re-export features from features." },
+        {
+          selector: "ExportNamedDeclaration[source.value='@features']",
+          message:
+            "Re-exporting from the same layer is forbidden by FSD: do not re-export features from features.",
+        },
+        {
+          selector: "ExportNamedDeclaration[source.value^='@features/']",
+          message:
+            "Re-exporting from the same layer is forbidden by FSD: do not re-export features from features.",
+        },
+        {
+          selector: "ExportAllDeclaration[source.value='@features']",
+          message:
+            "Re-exporting from the same layer is forbidden by FSD: do not re-export features from features.",
+        },
+        {
+          selector: "ExportAllDeclaration[source.value^='@features/']",
+          message:
+            "Re-exporting from the same layer is forbidden by FSD: do not re-export features from features.",
+        },
       ],
     },
   },
@@ -274,10 +336,26 @@ export default [
     rules: {
       "no-restricted-syntax": [
         "error",
-        { selector: "ExportNamedDeclaration[source.value='@screens']", message: "Re-exporting from the same layer is forbidden by FSD: do not re-export screens from screens." },
-        { selector: "ExportNamedDeclaration[source.value^='@screens/']", message: "Re-exporting from the same layer is forbidden by FSD: do not re-export screens from screens." },
-        { selector: "ExportAllDeclaration[source.value='@screens']", message: "Re-exporting from the same layer is forbidden by FSD: do not re-export screens from screens." },
-        { selector: "ExportAllDeclaration[source.value^='@screens/']", message: "Re-exporting from the same layer is forbidden by FSD: do not re-export screens from screens." },
+        {
+          selector: "ExportNamedDeclaration[source.value='@screens']",
+          message:
+            "Re-exporting from the same layer is forbidden by FSD: do not re-export screens from screens.",
+        },
+        {
+          selector: "ExportNamedDeclaration[source.value^='@screens/']",
+          message:
+            "Re-exporting from the same layer is forbidden by FSD: do not re-export screens from screens.",
+        },
+        {
+          selector: "ExportAllDeclaration[source.value='@screens']",
+          message:
+            "Re-exporting from the same layer is forbidden by FSD: do not re-export screens from screens.",
+        },
+        {
+          selector: "ExportAllDeclaration[source.value^='@screens/']",
+          message:
+            "Re-exporting from the same layer is forbidden by FSD: do not re-export screens from screens.",
+        },
       ],
     },
   },
@@ -286,10 +364,26 @@ export default [
     rules: {
       "no-restricted-syntax": [
         "error",
-        { selector: "ExportNamedDeclaration[source.value='@entities']", message: "Re-exporting from the same layer is forbidden by FSD: do not re-export entities from entities." },
-        { selector: "ExportNamedDeclaration[source.value^='@entities/']", message: "Re-exporting from the same layer is forbidden by FSD: do not re-export entities from entities." },
-        { selector: "ExportAllDeclaration[source.value='@entities']", message: "Re-exporting from the same layer is forbidden by FSD: do not re-export entities from entities." },
-        { selector: "ExportAllDeclaration[source.value^='@entities/']", message: "Re-exporting from the same layer is forbidden by FSD: do not re-export entities from entities." },
+        {
+          selector: "ExportNamedDeclaration[source.value='@entities']",
+          message:
+            "Re-exporting from the same layer is forbidden by FSD: do not re-export entities from entities.",
+        },
+        {
+          selector: "ExportNamedDeclaration[source.value^='@entities/']",
+          message:
+            "Re-exporting from the same layer is forbidden by FSD: do not re-export entities from entities.",
+        },
+        {
+          selector: "ExportAllDeclaration[source.value='@entities']",
+          message:
+            "Re-exporting from the same layer is forbidden by FSD: do not re-export entities from entities.",
+        },
+        {
+          selector: "ExportAllDeclaration[source.value^='@entities/']",
+          message:
+            "Re-exporting from the same layer is forbidden by FSD: do not re-export entities from entities.",
+        },
       ],
     },
   },
@@ -298,12 +392,27 @@ export default [
     rules: {
       "no-restricted-syntax": [
         "error",
-        { selector: "ExportNamedDeclaration[source.value='@shared']", message: "Re-exporting from the same layer is forbidden by FSD: do not re-export shared from shared." },
-        { selector: "ExportNamedDeclaration[source.value^='@shared/']", message: "Re-exporting from the same layer is forbidden by FSD: do not re-export shared from shared." },
-        { selector: "ExportAllDeclaration[source.value='@shared']", message: "Re-exporting from the same layer is forbidden by FSD: do not re-export shared from shared." },
-        { selector: "ExportAllDeclaration[source.value^='@shared/']", message: "Re-exporting from the same layer is forbidden by FSD: do not re-export shared from shared." },
+        {
+          selector: "ExportNamedDeclaration[source.value='@shared']",
+          message:
+            "Re-exporting from the same layer is forbidden by FSD: do not re-export shared from shared.",
+        },
+        {
+          selector: "ExportNamedDeclaration[source.value^='@shared/']",
+          message:
+            "Re-exporting from the same layer is forbidden by FSD: do not re-export shared from shared.",
+        },
+        {
+          selector: "ExportAllDeclaration[source.value='@shared']",
+          message:
+            "Re-exporting from the same layer is forbidden by FSD: do not re-export shared from shared.",
+        },
+        {
+          selector: "ExportAllDeclaration[source.value^='@shared/']",
+          message:
+            "Re-exporting from the same layer is forbidden by FSD: do not re-export shared from shared.",
+        },
       ],
     },
   },
 ];
-

@@ -40,8 +40,7 @@ export const MEALS: MealModel[] = [
     title: "Toast Hawaii",
     affordability: "affordable",
     complexity: "simple",
-    imageUrl:
-      "https://cdn.pixabay.com/photo/2018/07/11/21/51/toast-3532016_1280.jpg",
+    imageUrl: "https://cdn.pixabay.com/photo/2018/07/11/21/51/toast-3532016_1280.jpg",
     duration: 10,
     ingredients: [
       "1 Slice White Bread",
@@ -67,8 +66,7 @@ export const MEALS: MealModel[] = [
     title: "Classic Hamburger",
     affordability: "pricey",
     complexity: "simple",
-    imageUrl:
-      "https://cdn.pixabay.com/photo/2014/10/23/18/05/burger-500054_1280.jpg",
+    imageUrl: "https://cdn.pixabay.com/photo/2014/10/23/18/05/burger-500054_1280.jpg",
     duration: 45,
     ingredients: [
       "300g Cattle Hack",
@@ -97,8 +95,7 @@ export const MEALS: MealModel[] = [
     title: "Wiener Schnitzel",
     affordability: "luxurious",
     complexity: "challenging",
-    imageUrl:
-      "https://cdn.pixabay.com/photo/2018/03/31/19/29/schnitzel-3279045_1280.jpg",
+    imageUrl: "https://cdn.pixabay.com/photo/2018/03/31/19/29/schnitzel-3279045_1280.jpg",
     duration: 60,
     ingredients: [
       "8 Veal Cutlets",
@@ -164,8 +161,7 @@ export const MEALS: MealModel[] = [
     title: "Delicious Orange Mousse",
     affordability: "affordable",
     complexity: "hard",
-    imageUrl:
-      "https://cdn.pixabay.com/photo/2017/05/01/05/18/pastry-2274750_1280.jpg",
+    imageUrl: "https://cdn.pixabay.com/photo/2017/05/01/05/18/pastry-2274750_1280.jpg",
     duration: 240,
     ingredients: [
       "4 Sheets of Gelatine",
@@ -198,8 +194,7 @@ export const MEALS: MealModel[] = [
     title: "Pancakes",
     affordability: "affordable",
     complexity: "simple",
-    imageUrl:
-      "https://cdn.pixabay.com/photo/2018/07/10/21/23/pancake-3529653_1280.jpg",
+    imageUrl: "https://cdn.pixabay.com/photo/2018/07/10/21/23/pancake-3529653_1280.jpg",
     duration: 20,
     ingredients: [
       "1 1/2 Cups all-purpose Flour",
@@ -260,8 +255,7 @@ export const MEALS: MealModel[] = [
     title: "Chocolate Souffle",
     affordability: "affordable",
     complexity: "hard",
-    imageUrl:
-      "https://cdn.pixabay.com/photo/2014/08/07/21/07/souffle-412785_1280.jpg",
+    imageUrl: "https://cdn.pixabay.com/photo/2014/08/07/21/07/souffle-412785_1280.jpg",
     duration: 45,
     ingredients: [
       "1 Teaspoon melted Butter",
@@ -308,8 +302,7 @@ export const MEALS: MealModel[] = [
     title: "Asparagus Salad with Cherry Tomatoes",
     affordability: "luxurious",
     complexity: "simple",
-    imageUrl:
-      "https://cdn.pixabay.com/photo/2018/04/09/18/26/asparagus-3304997_1280.jpg",
+    imageUrl: "https://cdn.pixabay.com/photo/2018/04/09/18/26/asparagus-3304997_1280.jpg",
     duration: 30,
     ingredients: [
       "White and Green Asparagus",

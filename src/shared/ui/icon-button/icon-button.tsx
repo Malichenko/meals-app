@@ -64,9 +64,7 @@ export const IconButton: FC<Props> = ({
   };
 
   const combinedScale =
-    icon === "heart" && animated
-      ? Animated.multiply(scaleAnim, pulseAnim)
-      : scaleAnim;
+    icon === "heart" && animated ? Animated.multiply(scaleAnim, pulseAnim) : scaleAnim;
 
   return (
     <Pressable

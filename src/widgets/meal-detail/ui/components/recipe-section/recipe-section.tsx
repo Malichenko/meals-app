@@ -6,10 +6,7 @@ interface Props {
   style?: StyleProp<ViewStyle>;
 }
 
-export const RecipeSection: FC<PropsWithChildren<Props>> = ({
-  children,
-  style,
-}) => {
+export const RecipeSection: FC<PropsWithChildren<Props>> = ({ children, style }) => {
   return <View style={[styles.recipeItem, style]}>{children}</View>;
 };
 

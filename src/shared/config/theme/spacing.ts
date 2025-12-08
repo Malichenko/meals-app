@@ -1,4 +1,4 @@
-import { getBasesize } from './utils';
+import { getBasesize } from "./utils";
 
 type SpacingKey = `x${number}`;
 type SpacingTarget = Record<SpacingKey, number>;
@@ -19,7 +19,7 @@ const createSpacingBase = (spacingBase: number) => {
 };
 
 const isValidSpacingKey = (key: string): key is SpacingKey => {
-  return key.startsWith('x') && key.length > 1;
+  return key.startsWith("x") && key.length > 1;
 };
 
 const extractNumberFromKey = (key: string): number | null => {
@@ -40,10 +40,10 @@ const extractNumberFromKey = (key: string): number | null => {
 const isBuiltInProperty = (prop: string): boolean => {
   return (
     prop in Object.prototype ||
-    prop === 'constructor' ||
-    prop === '$$typeof' ||
-    prop.startsWith('$$') ||
-    prop.startsWith('__')
+    prop === "constructor" ||
+    prop === "$$typeof" ||
+    prop.startsWith("$$") ||
+    prop.startsWith("__")
   );
 };
 
@@ -52,7 +52,7 @@ const createSpacingHandler = (spacingBaseValue: number) => {
 
   const handler: ProxyHandler<ReturnType<typeof createSpacingBase>> = {
     get(target, prop, receiver) {
-      if (typeof prop === 'symbol') {
+      if (typeof prop === "symbol") {
         return Reflect.get(target, prop, receiver);
       }
 

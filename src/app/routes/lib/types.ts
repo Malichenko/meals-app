@@ -4,11 +4,7 @@ import type {
   NativeStackScreenProps,
   NativeStackNavigationProp,
 } from "@react-navigation/native-stack";
-import type {
-  CompositeScreenProps,
-  RouteProp,
-  Theme,
-} from "@react-navigation/native";
+import type { CompositeScreenProps, RouteProp, Theme } from "@react-navigation/native";
 import type {
   DrawerNavigationOptions,
   DrawerScreenProps,

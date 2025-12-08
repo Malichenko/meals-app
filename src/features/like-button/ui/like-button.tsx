@@ -16,9 +16,7 @@ export const LikeButton: FC<Props> = ({ mealId }) => {
   };
 
   const iconName = isLiked ? "heart" : "heart-outline";
-  const iconColor = isLiked
-    ? theme.palette.danger[60]
-    : theme.palette.neutral[10];
+  const iconColor = isLiked ? theme.palette.danger[60] : theme.palette.neutral[10];
 
   return <IconButton icon={iconName} onPress={handlePress} color={iconColor} />;
 };

@@ -6,37 +6,21 @@ import FontAwesome6 from "@expo/vector-icons/FontAwesome6";
 
 type Ptops = Pick<MealModel, "duration" | "complexity" | "affordability">;
 
-export const MealDetails: FC<Ptops> = ({
-  duration,
-  complexity,
-  affordability,
-}) => {
+export const MealDetails: FC<Ptops> = ({ duration, complexity, affordability }) => {
   return (
     <View style={styles.details}>
       <View style={styles.detailItem}>
-        <FontAwesome6
-          name="clock"
-          size={18}
-          color={theme.palette.neutral[60]}
-        />
+        <FontAwesome6 name="clock" size={18} color={theme.palette.neutral[60]} />
         <Text style={styles.detailText}>{duration}m</Text>
       </View>
 
       <View style={styles.detailItem}>
-        <FontAwesome6
-          name="bars-progress"
-          size={18}
-          color={theme.palette.neutral[60]}
-        />
+        <FontAwesome6 name="bars-progress" size={18} color={theme.palette.neutral[60]} />
         <Text style={styles.detailText}>{complexity.toUpperCase()}</Text>
       </View>
 
       <View style={styles.detailItem}>
-        <FontAwesome6
-          name="dollar-sign"
-          size={18}
-          color={theme.palette.neutral[60]}
-        />
+        <FontAwesome6 name="dollar-sign" size={18} color={theme.palette.neutral[60]} />
         <Text style={styles.detailText}>{affordability.toUpperCase()}</Text>
       </View>
     </View>
